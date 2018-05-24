@@ -6,6 +6,10 @@ import java.util.List;
 import io.github.usamahamid.mos_algorithm.base.BusinessLogicInterface;
 import io.github.usamahamid.mos_algorithm.model.Query;
 
+/**
+ * Mo's Algorithm delegate which utilizes the given {@link BusinessLogicInterface} to identify
+ * result for List of {@link Query}
+ */
 public class MosAlgorithmDelegate {
 
     private final List<Query> queries;
@@ -14,6 +18,10 @@ public class MosAlgorithmDelegate {
     public MosAlgorithmDelegate(BusinessLogicInterface logicInterface, List<Query> queries) {
         this.logicInterface = logicInterface;
         this.queries = queries;
+    }
+
+    private void onPreExecute() {
+        Collections.sort(queries);
     }
 
     public void execute(List values) {
@@ -47,7 +55,4 @@ public class MosAlgorithmDelegate {
         }
     }
 
-    private void onPreExecute() {
-        Collections.sort(queries);
-    }
 }
